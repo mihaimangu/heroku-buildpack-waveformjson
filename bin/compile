@@ -1,20 +1,20 @@
-#!/bin/sh
+#!/usr/bin/env ruby
 
-indent() {
-  sed -u 's/^/       /'
-}
+# sync output
+$stdout.sync = true
 
-echo "-----> Install libsndfile1-dev"
-BUILD_DIR=$1
-VENDOR_DIR="vendor" 
+$:.unshift File.expand_path("../../lib", __FILE__)
+require "language_pack"
+require "custom"
 
+# Install custom dependencies
+Custom.install_all
 
-
-cd $BUILD_DIR
-mkdir -p $VENDOR_DIR
-cd $VENDOR_DIR
-mkdir -p ruby-audio
-cd ruby-audio
-
-apt-get install libsndfile1-dev
-
+# Continue build
+LanguagePack::Instrument.trace 'compile', 'app.compile' do
+  if pack = LanguagePack.detect(ARGV[0], ARGV[1])
+    pack.log("compile") do
+      pack.compile
+    end
+  end
+end
