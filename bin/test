@@ -1,0 +1,37 @@
+#!/bin/sh
+
+indent() {
+  sed -u 's/^/       /'
+}
+
+echo "-----> Install libsndfile1-dev"
+BUILD_DIR=$1
+VENDOR_DIR="vendor"
+
+
+
+cd $BUILD_DIR
+mkdir -p $VENDOR_DIR
+cd $VENDOR_DIR
+mkdir -p ruby-audio
+cd ruby-audio
+
+apt-get install libsndfile1-dev
+
+echo "-----> Install ruby-audio"
+BUILD_DIR=$1
+VENDOR_DIR="vendor"
+
+cd $BUILD_DIR
+mkdir -p $VENDOR_DIR
+cd $VENDOR_DIR
+mkdir -p ruby-audio
+cd ruby-audio
+
+gem install ruby-audio -- --with-sndfile-lib=/usr/lib/x86_64-linux-gnu/libsndfile.so.1
+
+
+echo "-----> Install waveformjson"
+
+gem install gem install waveformjson -- --with-sndfile-lib=/usr/lib/x86_64-linux-gnu/libsndfile.so.1
+
