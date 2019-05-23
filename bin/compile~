@@ -1,3 +1,0 @@
-sudo apt-add-repository ppa:andrewrk/libgroove
-sudo apt-get update
-sudo apt-get install libgroove-dev
