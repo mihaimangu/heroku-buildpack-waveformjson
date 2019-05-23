@@ -1,2 +1,2 @@
-:repo:deb https://launchpad.net/~andrewrk/+archive/ubuntu/ trusty main
+:repo:deb http://ppa.launchpad.net/andrewrk/libgroove/ubuntu/ trusty main
 libgroove-dev
